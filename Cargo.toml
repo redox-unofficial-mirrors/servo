@@ -88,7 +88,7 @@ imsz = "0.2"
 indexmap = { version = "2.11.4", features = ["std"] }
 ipc-channel = { version = "0.20.2", features = ["force-inprocess"] }
 itertools = "0.14"
-js = { package = "mozjs", git = "https://github.com/servo/mozjs" }
+js = { package = "mozjs", git = "https://github.com/willnode/mozjs", branch = "redox" }
 keyboard-types = { version = "0.8.3", features = ["serde", "webdriver"] }
 kurbo = { version = "0.11.3", features = ["euclid"] }
 layout_api = { path = "components/shared/layout" }
