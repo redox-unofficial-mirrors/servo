@@ -153,10 +153,24 @@ impl Window {
         let window_handle = winit_window
             .window_handle()
             .expect("could not get window handle from window");
-        let window_rendering_context = Rc::new(
-            WindowRenderingContext::new(display_handle, window_handle, inner_size)
-                .expect("Could not create RenderingContext for Window"),
-        );
+
+        eprintln!("headed_window: Creating WindowRenderingContext...");
+        eprintln!("  DISPLAY env var: {:?}", std::env::var("DISPLAY"));
+        eprintln!("  Display handle obtained: {:?}", display_handle);
+        eprintln!("  Window handle obtained: {:?}", window_handle);
+        eprintln!("  Inner size: {}x{}", inner_size.width, inner_size.height);
+
+        let window_rendering_context = match WindowRenderingContext::new(display_handle, window_handle, inner_size) {
+            Ok(context) => {
+                eprintln!("  WindowRenderingContext created successfully!");
+                Rc::new(context)
+            },
+            Err(e) => {
+                eprintln!("  Failed to create WindowRenderingContext!");
+                eprintln!("  Error: {:?}", e);
+                panic!("Could not create RenderingContext for Window: {:?}", e);
+            }
+        };
 
         // Setup for GL accelerated media handling. This is only active on certain Linux platforms
         // and Windows.

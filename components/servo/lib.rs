@@ -77,6 +77,7 @@ use fonts::SystemFontService;
     not(target_arch = "arm"),
     not(target_arch = "aarch64"),
     not(target_env = "ohos"),
+    not(target_os = "redox"),
 ))]
 use gaol::sandbox::{ChildSandbox, ChildSandboxMethods};
 pub use gleam::gl;
@@ -1335,6 +1336,7 @@ pub fn run_content_process(token: String) {
     not(target_arch = "arm"),
     not(target_arch = "aarch64"),
     not(target_env = "ohos"),
+    not(target_os = "redox"),
 ))]
 fn create_sandbox() {
     ChildSandbox::new(content_process_sandbox_profile())
@@ -1349,6 +1351,7 @@ fn create_sandbox() {
     target_arch = "arm",
     target_arch = "aarch64",
     target_env = "ohos",
+    target_os = "redox",
 ))]
 fn create_sandbox() {
     panic!("Sandboxing is not supported on Windows, iOS, ARM targets and android.");

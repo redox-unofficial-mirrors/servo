@@ -18,7 +18,7 @@ background_hang_monitor_api = { workspace = true }
 backtrace = { workspace = true }
 base = { workspace = true }
 crossbeam-channel = { workspace = true }
-ipc-channel = { workspace = true }
+ipc-channel = { workspace = true, features = ["force-inprocess"] }
 libc = { workspace = true }
 log = { workspace = true }
 rustc-demangle = { version = "0.1", optional = true }

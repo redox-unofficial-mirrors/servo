@@ -107,9 +107,9 @@ impl Minibrowser {
         );
 
         let winit_window = window.winit_window().unwrap();
-        context
-            .egui_winit
-            .init_accesskit(event_loop, winit_window, event_loop_proxy);
+        // context
+        //     .egui_winit
+        //     .init_accesskit(event_loop, winit_window, event_loop_proxy);
         winit_window.set_visible(true);
 
         context.egui_ctx.options_mut(|options| {
@@ -571,6 +571,7 @@ impl Minibrowser {
     }
 
     /// Returns true if a redraw is required after handling the provided event.
+    /*
     pub(crate) fn handle_accesskit_event(&mut self, event: &accesskit_winit::WindowEvent) -> bool {
         match event {
             accesskit_winit::WindowEvent::InitialTreeRequested => {
@@ -589,7 +590,7 @@ impl Minibrowser {
             },
         }
     }
-
+    */
     pub(crate) fn set_zoom_factor(&self, factor: f32) {
         self.context.egui_ctx.set_zoom_factor(factor);
     }

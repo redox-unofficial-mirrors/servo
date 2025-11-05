@@ -99,7 +99,7 @@ pub fn content_process_sandbox_profile() -> Profile {
     not(target_os = "android"),
     not(target_env = "ohos"),
     not(target_arch = "arm"),
-    not(target_arch = "aarch64")
+    not(target_arch = "aarch64"),
 ))]
 pub fn content_process_sandbox_profile() -> Profile {
     use std::path::PathBuf;
@@ -175,7 +175,7 @@ pub fn spawn_multiprocess(content: UnprivilegedContent) -> Result<Process, Error
     not(target_os = "android"),
     not(target_env = "ohos"),
     not(target_arch = "arm"),
-    not(target_arch = "aarch64")
+    not(target_arch = "aarch64"),
 ))]
 pub fn spawn_multiprocess(content: UnprivilegedContent) -> Result<Process, Error> {
     use gaol::sandbox::{self, Sandbox, SandboxMethods};

@@ -52,6 +52,12 @@ pub(crate) fn Platform() -> DOMString {
 }
 
 #[allow(non_snake_case)]
+#[cfg(target_os = "redox")]
+pub(crate) fn Platform() -> DOMString {
+    DOMString::from("Redox")
+}
+
+#[allow(non_snake_case)]
 #[cfg(target_os = "macos")]
 pub(crate) fn Platform() -> DOMString {
     DOMString::from("Mac")

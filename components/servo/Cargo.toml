@@ -13,8 +13,9 @@ path = "lib.rs"
 crate-type = ["rlib"]
 
 [features]
-default = ["clipboard", "vello_cpu"]
-background_hang_monitor = ["background_hang_monitor/sampler"]
+# clipboard cut off
+default = ["vello_cpu"]
+# background_hang_monitor = ["background_hang_monitor/sampler"]
 bluetooth = [
     "bluetooth_traits",
     "dep:bluetooth",
@@ -131,7 +132,7 @@ webxr = { path = "../webxr", optional = true }
 arboard = { workspace = true, optional = true }
 webxr = { path = "../webxr", features = ["ipc", "glwindow", "headless"] }
 
-[target.'cfg(all(not(target_os = "windows"), not(target_os = "ios"), not(target_os = "android"), not(target_env = "ohos"), not(target_arch = "arm"), not(target_arch = "aarch64")))'.dependencies]
+[target.'cfg(all(not(target_os = "windows"), not(target_os = "ios"), not(target_os = "android"), not(target_env = "ohos"), not(target_arch = "arm"), not(target_arch = "aarch64"), not(target_os = "redox")))'.dependencies]
 gaol = "0.2.1"
 
 [target.'cfg(target_os = "windows")'.dependencies]
@@ -141,7 +142,7 @@ webxr = { path = "../webxr", features = ["ipc", "glwindow", "headless", "openxr-
 anyhow = "1.0.97"
 http = { workspace = true }
 libservo = { path = ".", features = ["tracing"] }
-rustls = { version = "0.23", default-features = false, features = ["aws-lc-rs"] }
+rustls = { workspace = true , default-features = false, features = ["aws-lc-rs"] }
 tracing = { workspace = true }
 winit = { workspace = true }
 

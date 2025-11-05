@@ -61,11 +61,11 @@ core-foundation = "0.9"
 core-graphics = "0.23"
 core-text = "20.1"
 
-[target.'cfg(any(target_os = "linux", target_os = "android"))'.dependencies]
+[target.'cfg(any(target_os = "linux", target_os = "android", target_os = "redox"))'.dependencies]
 freetype-sys = { workspace = true }
 servo_allocator = { path = "../allocator" }
 
-[target.'cfg(all(target_os = "linux", not(target_env = "ohos")))'.dependencies]
+[target.'cfg(all(any(target_os = "linux", target_os = "redox"), not(target_env = "ohos")))'.dependencies]
 fontconfig_sys = { package = "yeslogic-fontconfig-sys", version = "6" }
 
 [target.'cfg(target_os = "android")'.dependencies]

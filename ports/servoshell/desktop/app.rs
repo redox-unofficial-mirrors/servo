@@ -699,18 +699,18 @@ impl ApplicationHandler<AppEvent> for App {
     }
 
     fn user_event(&mut self, event_loop: &ActiveEventLoop, event: AppEvent) {
-        if let AppEvent::Accessibility(ref event) = event {
-            let Some(ref mut minibrowser) = self.minibrowser else {
-                return;
-            };
-            if !minibrowser.handle_accesskit_event(&event.window_event) {
-                return;
-            }
-            if let Some(window) = self.windows.get(&event.window_id) {
-                window.winit_window().unwrap().request_redraw();
-            }
-            return;
-        }
+        // if let AppEvent::Accessibility(ref event) = event {
+        //     let Some(ref mut minibrowser) = self.minibrowser else {
+        //         return;
+        //     };
+        //     if !minibrowser.handle_accesskit_event(&event.window_event) {
+        //         return;
+        //     }
+        //     if let Some(window) = self.windows.get(&event.window_id) {
+        //         window.winit_window().unwrap().request_redraw();
+        //     }
+        //     return;
+        // }
 
         let now = Instant::now();
         let event = winit::event::Event::UserEvent(event);

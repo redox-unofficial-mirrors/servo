@@ -31,7 +31,7 @@ arboard = "3"
 arrayvec = "0.7"
 async-tungstenite = { version = "0.29", features = ["tokio-rustls-webpki-roots"] }
 atomic_refcell = "0.1.13"
-aws-lc-rs = { version = "1.14", default-features = false, features = ["aws-lc-sys"] }
+aws-lc-rs = { version = "=1.13.3", default-features = false, features = ["aws-lc-sys"] }
 background_hang_monitor_api = { path = "components/shared/background_hang_monitor" }
 backtrace = "0.3"
 base = { path = "components/shared/base" }
@@ -86,7 +86,7 @@ icu_segmenter = "1.5.0"
 image = { version = "0.25", default-features = false, features = ["avif", "rayon", "bmp", "gif", "ico", "jpeg", "png", "webp"] }
 imsz = "0.2"
 indexmap = { version = "2.11.4", features = ["std"] }
-ipc-channel = "0.20.2"
+ipc-channel = { version = "0.20.2", features = ["force-inprocess"] }
 itertools = "0.14"
 js = { package = "mozjs", git = "https://github.com/servo/mozjs" }
 keyboard-types = { version = "0.8.3", features = ["serde", "webdriver"] }
@@ -148,7 +148,7 @@ stylo_config = { git = "https://github.com/servo/stylo", branch = "2025-10-01" }
 stylo_dom = { git = "https://github.com/servo/stylo", branch = "2025-10-01" }
 stylo_malloc_size_of = { git = "https://github.com/servo/stylo", branch = "2025-10-01" }
 stylo_traits = { git = "https://github.com/servo/stylo", branch = "2025-10-01" }
-surfman = { version = "0.10.0", features = ["chains"] }
+surfman = { git = "https://github.com/willnode/surfman", branch = "redox-orbital", features = ["chains"] }
 syn = { version = "2", default-features = false, features = ["clone-impls", "derive", "parsing"] }
 synstructure = "0.13"
 taffy = { version = "0.9", default-features = false, features = ["calc", "detailed_layout_info", "grid", "std"] }
@@ -174,16 +174,16 @@ vello_cpu = { git = "https://github.com/linebender/vello", rev = "fdf025a88dd00c
 webdriver = "0.53.0"
 webgpu_traits = { path = "components/shared/webgpu" }
 webpki-roots = "1.0"
-webrender = { git = "https://github.com/servo/webrender", branch = "0.68", features = ["capture"] }
-webrender_api = { git = "https://github.com/servo/webrender", branch = "0.68" }
+webrender = { git = "https://github.com/willnode/webrender.git", branch = "0.68-redox", features = ["capture"] }
+webrender_api = { git = "https://github.com/willnode/webrender.git", branch = "0.68-redox" }
 webxr-api = { path = "components/shared/webxr" }
 wgpu-core = "26"
 wgpu-types = "26"
 winapi = "0.3"
 windows-sys = "0.61"
-winit = "0.30.12"
+winit = { version = "0.30.12", default-features = false }
 wio = "0.2"
-wr_malloc_size_of = { git = "https://github.com/servo/webrender", branch = "0.68" }
+wr_malloc_size_of = { git = "https://github.com/willnode/webrender.git", branch = "0.68-redox" }
 xi-unicode = "0.3.0"
 xml5ever = "0.35"
 xpath = { path = "components/xpath" }
@@ -232,6 +232,20 @@ lto = "thin"
 codegen-units = 1
 
 [patch.crates-io]
+# requires socketpair SOCK_SEQPACKET to support multiprocess (try remove force-inprocess feature)
+ipc-channel = { git = "https://github.com/willnode/ipc-channel.git", branch="redox" }
+orbclient = { git = "https://gitlab.redox-os.org/redox-os/orbclient" }
+#servo_malloc_size_of = { path = "./components/malloc_size_of" }
+tikv-jemalloc-sys = { version = "0.6.0", git = "https://gitlab.redox-os.org/njskalski/jemallocator.git", branch = "redox_mods" }
+tikv-jemallocator = { version = "0.6.0", git = "https://gitlab.redox-os.org/njskalski/jemallocator.git", branch = "redox_mods" }
+mozangle = { git = "https://gitlab.redox-os.org/willnode/mozangle.git", branch = "redox_mods"}
+aws-lc-rs = { git = "https://gitlab.redox-os.org/njskalski/aws-lc-rs.git", branch = "redox_mods" }
+# mozjs_sys = { git = "https://gitlab.redox-os.org/njskalski/mozjs.git", rev = "e2ee9c77148c3af4f11fdff9a2cbd7e449d48d33"}
+# mozjs = { git = "https://gitlab.redox-os.org/njskalski/mozjs.git", branch = "redox_mods"}
+# x11rb = { git = "https://gitlab.redox-os.org/njskalski/x11rb.git", branch = "redox_mods"}
+libz-sys = { git = "https://github.com/willnode/libz-sys.git", branch = "servo"}
+# winit = { git = "https://gitlab.redox-os.org/njskalski/winit.git", branch = "redox_mods2"}
+# freetype-sys = { git = "https://github.com/PistonDevelopers/freetype-sys.git", branch = "master" }
 # If you need to temporarily test Servo with a local fork of some upstream
 # crate, add that here. Use the form:
 #
@@ -260,7 +274,7 @@ codegen-units = 1
 #
 # [patch."https://github.com/servo/webrender"]
 # webrender = { path = "../webrender/webrender" }
-# webrender_api = { path = "../webrender/webrender_api" }
+# webrender_api = { git = "https://github.com/willnode/webrender.git", branch = "0.68-redox" } = { path = "../webrender/webrender_api = { git = "https://github.com/willnode/webrender.git", branch = "0.68-redox" }" }
 # wr_malloc_size_of = { path = "../webrender/wr_malloc_size_of" }
 #
 # Or for another Git dependency:

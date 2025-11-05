@@ -168,7 +168,7 @@ impl WindowPortsMethods for Window {
         // notification (such as from the display manager) that it has changed size, so we
         // must notify the compositor here.
         webview.move_resize(self.screen_size.to_f32().into());
-        webview.resize(PhysicalSize::new(
+        webview.resize(PhysicalSize::<u32>::new(
             self.screen_size.width as u32,
             self.screen_size.height as u32,
         ));

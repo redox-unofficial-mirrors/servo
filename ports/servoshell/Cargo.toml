@@ -35,7 +35,8 @@ OriginalFilename = "servo.exe"
 ProductName = "Servo"
 
 [features]
-default = ["max_log_level", "webgpu", "webxr"]
+# cutting , "webxr" for redox
+default = ["max_log_level", "webgpu"]
 crown = ["libservo/crown"]
 debugmozjs = ["libservo/debugmozjs"]
 jitspew = ["libservo/jitspew"]
@@ -65,7 +66,8 @@ image = { workspace = true }
 ipc-channel = { workspace = true }
 keyboard-types = { workspace = true }
 libc = { workspace = true }
-libservo = { path = "../../components/servo", features = ["background_hang_monitor", "bluetooth", "testbinding"] }
+# removed "background_hang_monitor",
+libservo = { path = "../../components/servo", features = [ "bluetooth", "testbinding"] }
 log = { workspace = true }
 mime_guess = { workspace = true }
 raw-window-handle = { workspace = true }
@@ -105,12 +107,31 @@ nix = { workspace = true, features = ["fs"] }
 serde_json = { workspace = true }
 surfman = { workspace = true, features = ["sm-angle-default"] }
 
-[target.'cfg(not(any(target_os = "android", target_env = "ohos")))'.dependencies]
-accesskit_winit = "0.27"
+# I removed the problematic dependencies from everywhere even though they should not be pulled for redox. The thing is that cargo is still complaining about them, even
+# though they should be ignored.
+[target.'cfg(not(any(target_os = "android", target_env = "ohos", target_os = "redox")))'.dependencies]
+# accesskit_winit = "0.27"
 dirs = "6.0"
-egui = { version = "0.32.3", features = ["accesskit"] }
+# egui = { version = "0.32.3", features = ["accesskit"] }
+# egui-file-dialog = "0.11.0"
+# egui-winit = { version = "0.32.3", default-features = false, features = ["accesskit", "clipboard", "wayland"] }
+# egui_glow = { version = "0.32.3", features = ["winit"] }
+gilrs = "0.11.0"
+# glow = "0.16.0"
+headers = { workspace = true }
+net = { path = "../../components/net" }
+net_traits = { workspace = true }
+serde_json = { workspace = true }
+# For optional feature servo_allocator/use-system-allocator
+servo_allocator = { path = "../../components/allocator" }
+surfman = { workspace = true, features = ["sm-raw-window-handle-06", "sm-x11"] }
+winit = { workspace = true }
+
+[target.'cfg(target_os = "redox")'.dependencies]
+dirs = "6.0"
+egui = { version = "0.32.1", default-features = false }
 egui-file-dialog = "0.11.0"
-egui-winit = { version = "0.32.3", default-features = false, features = ["accesskit", "clipboard", "wayland"] }
+egui-winit = { version = "0.32.3", default-features = false, features = [] }
 egui_glow = { version = "0.32.3", features = ["winit"] }
 gilrs = "0.11.0"
 glow = { workspace = true }
