@@ -22,7 +22,10 @@ impl SqliteEngine {
         let connection = match db_dir {
             Some(path) => {
                 let path = path.join("webstorage.sqlite");
-                Self::init_db(&path)?
+                Self::init_db(&path).or_else(|e| {
+                    eprintln!("ERROR: Can't open sqlite on {:?}, opening on memory instead: {:?}", path.display(), e);
+                    Connection::open_in_memory()
+                })?
             },
             None => Connection::open_in_memory()?,
         };
