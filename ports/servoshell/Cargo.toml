@@ -35,12 +35,12 @@ OriginalFilename = "servo.exe"
 ProductName = "Servo"
 
 [features]
-# cutting , "webxr" for redox
-default = ["max_log_level", "webgpu"]
+# cutting "webxr" and adding "debugmozjs" for redox
+default = ["max_log_level", "webgpu", "debugmozjs"]
 crown = ["libservo/crown"]
 debugmozjs = ["libservo/debugmozjs"]
 jitspew = ["libservo/jitspew"]
-js_backtrace = ["libservo/js_backtrace"]
+js_backtrace = ["libservo/js_backtrace"] 
 max_log_level = ["log/release_max_level_info"]
 media-gstreamer = ["libservo/media-gstreamer"]
 native-bluetooth = ["libservo/native-bluetooth"]
