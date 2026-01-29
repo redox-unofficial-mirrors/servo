@@ -287,7 +287,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
  "x11rb",
 ]
 
@@ -1180,7 +1180,7 @@ dependencies = [
  "compositing_traits",
  "constellation_traits",
  "crossbeam-channel",
- "dpi",
+ "dpi 0.1.2",
  "embedder_traits",
  "euclid",
  "gleam",
@@ -1214,7 +1214,7 @@ dependencies = [
  "bincode",
  "bitflags 2.9.4",
  "crossbeam-channel",
- "dpi",
+ "dpi 0.1.2",
  "embedder_traits",
  "euclid",
  "gleam",
@@ -1850,7 +1850,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.59.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -1914,6 +1914,11 @@ dependencies = [
  "quote",
  "syn",
 ]
+
+[[package]]
+name = "dpi"
+version = "0.1.1"
+source = "git+https://github.com/jackpot51/winit.git?branch=redox-0.30#82db64e138e5b565b34e94e16279c38637c4e427"
 
 [[package]]
 name = "dpi"
@@ -2221,7 +2226,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -2794,7 +2799,7 @@ dependencies = [
  "gobject-sys",
  "libc",
  "system-deps 7.0.5",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -4562,7 +4567,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07033963ba89ebaf1584d767badaa2e8fcec21aedea6b8c0346d487d49c28667"
 dependencies = [
  "cfg-if",
- "windows-targets 0.52.6",
+ "windows-targets 0.53.5",
 ]
 
 [[package]]
@@ -4573,13 +4578,13 @@ checksum = "f9fbbcab51052fe104eb5e5d351cf728d30a5be1fe14d9be8a3b097481fb97de"
 
 [[package]]
 name = "libredox"
-version = "0.1.10"
+version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "416f7e718bdb06000964960ffa43b4335ad4012ae8b99060261aa4a8088d5ccb"
+checksum = "3d0b95e02c851351f877147b7deea7b1afb1df71b63aa5f8270716e0c5720616"
 dependencies = [
  "bitflags 2.9.4",
  "libc",
- "redox_syscall 0.5.18",
+ "redox_syscall 0.7.0",
 ]
 
 [[package]]
@@ -4601,7 +4606,7 @@ dependencies = [
  "crossbeam-channel",
  "devtools",
  "devtools_traits",
- "dpi",
+ "dpi 0.1.2",
  "embedder_traits",
  "env_logger 0.11.8",
  "euclid",
@@ -5282,7 +5287,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -5869,13 +5874,22 @@ dependencies = [
 
 [[package]]
 name = "orbclient"
-version = "0.3.49"
-source = "git+https://gitlab.redox-os.org/redox-os/orbclient#88c727fc314e9e860afd23f36ece331984e7fe65"
+version = "0.3.50"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52ad2c6bae700b7aa5d1cc30c59bdd3a1c180b09dbaea51e2ae2b8e1cf211fdd"
+dependencies = [
+ "libc",
+ "libredox",
+]
+
+[[package]]
+name = "orbclient"
+version = "0.3.50"
+source = "git+https://gitlab.redox-os.org/redox-os/orbclient#77c28e88fcb180c750175f2dcf5c7342d357ab26"
 dependencies = [
  "libc",
  "libredox",
  "sdl2",
- "sdl2-sys",
 ]
 
 [[package]]
@@ -6544,18 +6558,18 @@ dependencies = [
 
 [[package]]
 name = "redox_syscall"
-version = "0.4.1"
+version = "0.5.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4722d768eff46b75989dd134e5c353f0d6296e5aaa3132e776cbdb56be7731aa"
+checksum = "ed2bf2547551a7053d6fdfafda3f938979645c44812fbfcda098faae3f1a362d"
 dependencies = [
- "bitflags 1.3.2",
+ "bitflags 2.9.4",
 ]
 
 [[package]]
 name = "redox_syscall"
-version = "0.5.18"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed2bf2547551a7053d6fdfafda3f938979645c44812fbfcda098faae3f1a362d"
+checksum = "49f3fe0889e69e2ae9e41f4d6c4c0181701d00e4697b356fb1f74173a5e0ee27"
 dependencies = [
  "bitflags 2.9.4",
 ]
@@ -6729,7 +6743,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -7036,9 +7050,9 @@ dependencies = [
 
 [[package]]
 name = "sdl2"
-version = "0.35.2"
+version = "0.38.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f7959277b623f1fb9e04aea73686c3ca52f01b2145f8ea16f4ff30d8b7623b1a"
+checksum = "2d42407afc6a8ab67e36f92e80b8ba34cbdc55aaeed05249efe9a2e8d0e9feef"
 dependencies = [
  "bitflags 1.3.2",
  "lazy_static",
@@ -7048,9 +7062,9 @@ dependencies = [
 
 [[package]]
 name = "sdl2-sys"
-version = "0.35.2"
+version = "0.38.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3586be2cf6c0a8099a79a12b4084357aa9b3e0b0d7980e3b67aaf7a9d55f9f0"
+checksum = "3ff61407fc75d4b0bbc93dc7e4d6c196439965fbef8e4a4f003a36095823eac0"
 dependencies = [
  "cfg-if",
  "libc",
@@ -7517,7 +7531,7 @@ dependencies = [
  "cfg-if",
  "crossbeam-channel",
  "dirs",
- "dpi",
+ "dpi 0.1.2",
  "egui",
  "egui-file-dialog",
  "egui-winit",
@@ -8040,7 +8054,7 @@ dependencies = [
  "objc2-io-surface",
  "objc2-metal 0.3.2",
  "objc2-quartz-core 0.3.2",
- "orbclient",
+ "orbclient 0.3.50 (git+https://gitlab.redox-os.org/redox-os/orbclient)",
  "raw-window-handle",
  "wayland-sys",
  "winapi",
@@ -8182,7 +8196,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.2",
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -9616,7 +9630,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -10040,8 +10054,7 @@ checksum = "d6bbff5f0aada427a1e5a6da5f1f98158182f26556f345ac9e04d36d0ebed650"
 [[package]]
 name = "winit"
 version = "0.30.12"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c66d4b9ed69c4009f6321f762d6e61ad8a2389cd431b97cb1e146812e9e6c732"
+source = "git+https://github.com/jackpot51/winit.git?branch=redox-0.30#82db64e138e5b565b34e94e16279c38637c4e427"
 dependencies = [
  "android-activity",
  "atomic-waker",
@@ -10053,18 +10066,19 @@ dependencies = [
  "core-foundation 0.9.4",
  "core-graphics",
  "cursor-icon",
- "dpi",
+ "dpi 0.1.1",
  "js-sys",
  "libc",
+ "libredox",
  "ndk",
  "objc2 0.5.2",
  "objc2-app-kit 0.2.2",
  "objc2-foundation 0.2.2",
  "objc2-ui-kit",
- "orbclient",
+ "orbclient 0.3.50 (registry+https://github.com/rust-lang/crates.io-index)",
  "pin-project",
  "raw-window-handle",
- "redox_syscall 0.4.1",
+ "redox_syscall 0.7.0",
  "rustix 0.38.44",
  "smol_str",
  "tracing",
@@ -10435,3 +10449,8 @@ checksum = "29ce2c8a9384ad323cf564b67da86e21d3cfdff87908bc1223ed5c99bc792713"
 dependencies = [
  "zune-core",
 ]
+
+[[patch.unused]]
+name = "orbclient"
+version = "0.3.49"
+source = "git+https://gitlab.redox-os.org/redox-os/orbclient#88c727fc314e9e860afd23f36ece331984e7fe65"

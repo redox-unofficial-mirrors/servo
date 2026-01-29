@@ -245,7 +245,7 @@ aws-lc-rs = { git = "https://gitlab.redox-os.org/njskalski/aws-lc-rs.git", branc
 # x11rb = { git = "https://gitlab.redox-os.org/njskalski/x11rb.git", branch = "redox_mods"}
 libz-sys = { git = "https://github.com/willnode/libz-sys.git", branch = "servo"}
 zeitstempel = { git = "https://github.com/willnode/zeitstempel.git", branch = "redox"}
-# winit = { git = "https://gitlab.redox-os.org/njskalski/winit.git", branch = "redox_mods2"}
+winit = { git = "https://github.com/jackpot51/winit.git", branch = "redox-0.30"}
 # freetype-sys = { git = "https://github.com/PistonDevelopers/freetype-sys.git", branch = "master" }
 # If you need to temporarily test Servo with a local fork of some upstream
 # crate, add that here. Use the form:
