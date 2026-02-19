@@ -287,7 +287,7 @@ dependencies = [
  "objc2-foundation 0.3.2",
  "parking_lot",
  "percent-encoding",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
  "x11rb",
 ]
 
@@ -344,13 +344,11 @@ dependencies = [
 
 [[package]]
 name = "async-compression"
-version = "0.4.32"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a89bce6054c720275ac2432fbba080a66a2106a44a1b804553930ca6909f4e0"
+version = "0.4.39"
+source = "git+https://github.com/willnode/async-compression.git?branch=redox#7c289967c92276920f5f83a51f941a0076f545aa"
 dependencies = [
  "compression-codecs",
  "compression-core",
- "futures-core",
  "pin-project-lite",
  "tokio",
 ]
@@ -1180,7 +1178,7 @@ dependencies = [
  "compositing_traits",
  "constellation_traits",
  "crossbeam-channel",
- "dpi 0.1.2",
+ "dpi",
  "embedder_traits",
  "euclid",
  "gleam",
@@ -1214,7 +1212,7 @@ dependencies = [
  "bincode",
  "bitflags 2.9.4",
  "crossbeam-channel",
- "dpi 0.1.2",
+ "dpi",
  "embedder_traits",
  "euclid",
  "gleam",
@@ -1239,9 +1237,8 @@ dependencies = [
 
 [[package]]
 name = "compression-codecs"
-version = "0.4.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ef8a506ec4b81c460798f572caead636d57d3d7e940f998160f52bd254bf2d23"
+version = "0.4.36"
+source = "git+https://github.com/willnode/async-compression.git?branch=redox#7c289967c92276920f5f83a51f941a0076f545aa"
 dependencies = [
  "brotli",
  "compression-core",
@@ -1253,9 +1250,8 @@ dependencies = [
 
 [[package]]
 name = "compression-core"
-version = "0.4.29"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e47641d3deaf41fb1538ac1f54735925e275eaf3bf4d55c81b137fba797e5cbb"
+version = "0.4.31"
+source = "git+https://github.com/willnode/async-compression.git?branch=redox#7c289967c92276920f5f83a51f941a0076f545aa"
 
 [[package]]
 name = "concurrent-queue"
@@ -1850,7 +1846,7 @@ dependencies = [
  "libc",
  "option-ext",
  "redox_users",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1919,12 +1915,6 @@ dependencies = [
 name = "dpi"
 version = "0.1.1"
 source = "git+https://github.com/jackpot51/winit.git?branch=redox-0.30#82db64e138e5b565b34e94e16279c38637c4e427"
-
-[[package]]
-name = "dpi"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76"
 
 [[package]]
 name = "dtoa"
@@ -2226,7 +2216,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -2799,7 +2789,7 @@ dependencies = [
  "gobject-sys",
  "libc",
  "system-deps 7.0.5",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -3635,7 +3625,7 @@ dependencies = [
  "hyper 1.7.0",
  "libc",
  "pin-project-lite",
- "socket2 0.6.1",
+ "socket2 0.5.10",
  "tokio",
  "tower-service",
  "tracing",
@@ -4266,7 +4256,7 @@ checksum = "e04d7f318608d35d4b61ddd75cbdaee86b023ebe2bd5a66ee0915f0bf93095a9"
 dependencies = [
  "hermit-abi",
  "libc",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -4606,7 +4596,7 @@ dependencies = [
  "crossbeam-channel",
  "devtools",
  "devtools_traits",
- "dpi 0.1.2",
+ "dpi",
  "embedder_traits",
  "env_logger 0.11.8",
  "euclid",
@@ -5287,7 +5277,7 @@ version = "0.50.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5"
 dependencies = [
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -5870,16 +5860,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b31ce827892359f23d3cd1cc4c75a6c241772bbd2db17a92dcf27cbefdf52689"
 dependencies = [
  "pastey",
-]
-
-[[package]]
-name = "orbclient"
-version = "0.3.50"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "52ad2c6bae700b7aa5d1cc30c59bdd3a1c180b09dbaea51e2ae2b8e1cf211fdd"
-dependencies = [
- "libc",
- "libredox",
 ]
 
 [[package]]
@@ -6730,7 +6710,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.4.15",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -6743,7 +6723,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.11.0",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -7531,7 +7511,7 @@ dependencies = [
  "cfg-if",
  "crossbeam-channel",
  "dirs",
- "dpi 0.1.2",
+ "dpi",
  "egui",
  "egui-file-dialog",
  "egui-winit",
@@ -8054,7 +8034,7 @@ dependencies = [
  "objc2-io-surface",
  "objc2-metal 0.3.2",
  "objc2-quartz-core 0.3.2",
- "orbclient 0.3.50 (git+https://gitlab.redox-os.org/redox-os/orbclient)",
+ "orbclient",
  "raw-window-handle",
  "wayland-sys",
  "winapi",
@@ -8196,7 +8176,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix 1.1.2",
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -9630,7 +9610,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.60.2",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -10066,7 +10046,7 @@ dependencies = [
  "core-foundation 0.9.4",
  "core-graphics",
  "cursor-icon",
- "dpi 0.1.1",
+ "dpi",
  "js-sys",
  "libc",
  "libredox",
@@ -10075,7 +10055,7 @@ dependencies = [
  "objc2-app-kit 0.2.2",
  "objc2-foundation 0.2.2",
  "objc2-ui-kit",
- "orbclient 0.3.50 (registry+https://github.com/rust-lang/crates.io-index)",
+ "orbclient",
  "pin-project",
  "raw-window-handle",
  "redox_syscall 0.7.0",
@@ -10449,8 +10429,3 @@ checksum = "29ce2c8a9384ad323cf564b67da86e21d3cfdff87908bc1223ed5c99bc792713"
 dependencies = [
  "zune-core",
 ]
-
-[[patch.unused]]
-name = "orbclient"
-version = "0.3.49"
-source = "git+https://gitlab.redox-os.org/redox-os/orbclient#88c727fc314e9e860afd23f36ece331984e7fe65"
