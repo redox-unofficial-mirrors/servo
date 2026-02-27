@@ -7517,6 +7517,7 @@ dependencies = [
  "egui-winit",
  "egui_glow",
  "env_filter",
+ "env_logger 0.11.8",
  "euclid",
  "gilrs",
  "glow",
@@ -8015,7 +8016,7 @@ checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 [[package]]
 name = "surfman"
 version = "0.10.0"
-source = "git+https://github.com/willnode/surfman?branch=redox-orbital#5a5eabe9cdfe88ecb8ebcf97d324d54863ae05ea"
+source = "git+https://github.com/willnode/surfman?branch=redox-orbital#38c18cece46a2c880b63c77975e538cbd2e2cc66"
 dependencies = [
  "bitflags 2.9.4",
  "cfg_aliases",

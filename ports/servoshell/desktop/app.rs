@@ -163,7 +163,7 @@ impl App {
             ));
 
         let servo = servo_builder.build();
-        servo.setup_logging();
+        // servo.setup_logging();
 
         // Initialize WebDriver server here before `servo` is moved.
         let webdriver_receiver = self.servoshell_preferences.webdriver_port.map(|port| {

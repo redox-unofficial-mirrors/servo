@@ -15,7 +15,7 @@ use euclid::{Point2D, Size2D};
 use gleam::gl::{self, Gl};
 use glow::NativeFramebuffer;
 use image::RgbaImage;
-use log::{debug, trace, warn};
+use log::{debug, info, trace, warn};
 use raw_window_handle::{DisplayHandle, WindowHandle};
 pub use surfman::Error;
 use surfman::chains::{PreserveBuffer, SwapChain};
@@ -105,31 +105,34 @@ impl Drop for SurfmanRenderingContext {
 
 impl SurfmanRenderingContext {
     fn new(connection: &Connection, adapter: &Adapter) -> Result<Self, Error> {
-        eprintln!("  SurfmanRenderingContext::new - Starting");
-        eprintln!("    GL API: {:?}", connection.gl_api());
-        
-        eprintln!("    Creating device...");
-        let mut device = connection.create_device(adapter)?;
-        eprintln!("    Device created");
+        info!("  SurfmanRenderingContext::new - Starting");
+        info!("    GL API: {:?}", connection.gl_api());
 
-        let flags = ContextAttributeFlags::ALPHA |
-            ContextAttributeFlags::DEPTH |
-            ContextAttributeFlags::STENCIL;
+        info!("    Creating device...");
+        let mut device = connection.create_device(adapter)?;
+        info!("    Device created");
+
+        let flags = ContextAttributeFlags::ALPHA
+            | ContextAttributeFlags::DEPTH
+            | ContextAttributeFlags::STENCIL;
         let gl_api = connection.gl_api();
         let version = match &gl_api {
             GLApi::GLES => surfman::GLVersion { major: 3, minor: 0 },
             GLApi::GL => surfman::GLVersion { major: 3, minor: 2 },
         };
-        eprintln!("    GL Version requested: {}.{}", version.major, version.minor);
-        
-        eprintln!("    Creating context descriptor...");
+        info!(
+            "    GL Version requested: {}.{}",
+            version.major, version.minor
+        );
+
+        info!("    Creating context descriptor...");
         let context_descriptor =
             device.create_context_descriptor(&ContextAttributes { flags, version })?;
-        eprintln!("    Context descriptor created");
-        
-        eprintln!("    Creating context...");
+        info!("    Context descriptor created");
+
+        info!("    Creating context...");
         let context = device.create_context(&context_descriptor, None)?;
-        eprintln!("    Context created");
+        info!("    Context created");
 
         #[allow(unsafe_code)]
         let gleam_gl = {
@@ -404,41 +407,41 @@ impl WindowRenderingContext {
         window_handle: WindowHandle,
         size: PhysicalSize<u32>,
     ) -> Result<Self, Error> {
-        eprintln!("WindowRenderingContext::new - Starting creation");
-        eprintln!("  Size: {}x{}", size.width, size.height);
-        
-        eprintln!("  Creating connection from display_handle...");
-        let connection = Connection::from_display_handle(display_handle)?;
-        eprintln!("  Connection created successfully");
-        
-        eprintln!("  Creating adapter...");
-        let adapter = connection.create_adapter()?;
-        eprintln!("  Adapter created successfully");
-        
-        eprintln!("  Creating SurfmanRenderingContext...");
-        let surfman_context = SurfmanRenderingContext::new(&connection, &adapter)?;
-        eprintln!("  SurfmanRenderingContext created successfully");
+        info!("WindowRenderingContext::new - Starting creation");
+        info!("  Size: {}x{}", size.width, size.height);
 
-        eprintln!("  Creating native widget from window handle...");
+        info!("  Creating connection from display_handle...");
+        let connection = Connection::from_display_handle(display_handle)?;
+        info!("  Connection created successfully");
+
+        info!("  Creating adapter...");
+        let adapter = connection.create_adapter()?;
+        info!("  Adapter created successfully");
+
+        info!("  Creating SurfmanRenderingContext...");
+        let surfman_context = SurfmanRenderingContext::new(&connection, &adapter)?;
+        info!("  SurfmanRenderingContext created successfully");
+
+        info!("  Creating native widget from window handle...");
         let native_widget = connection
             .create_native_widget_from_window_handle(
                 window_handle,
                 Size2D::new(size.width as i32, size.height as i32),
             )
             .expect("Failed to create native widget");
-        eprintln!("  Native widget created successfully");
+        info!("  Native widget created successfully");
 
-        eprintln!("  Creating surface...");
+        info!("  Creating surface...");
         let surface = surfman_context.create_surface(SurfaceType::Widget { native_widget })?;
-        eprintln!("  Surface created successfully");
-        
-        eprintln!("  Binding surface...");
+        info!("  Surface created successfully");
+
+        info!("  Binding surface...");
         surfman_context.bind_surface(surface)?;
-        eprintln!("  Surface bound successfully");
-        
-        eprintln!("  Making context current...");
+        info!("  Surface bound successfully");
+
+        info!("  Making context current...");
         surfman_context.make_current()?;
-        eprintln!("  Context made current successfully");
+        info!("  Context made current successfully");
 
         Ok(Self {
             size: Cell::new(size),

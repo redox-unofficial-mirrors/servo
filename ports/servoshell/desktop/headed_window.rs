@@ -154,20 +154,20 @@ impl Window {
             .window_handle()
             .expect("could not get window handle from window");
 
-        eprintln!("headed_window: Creating WindowRenderingContext...");
-        eprintln!("  DISPLAY env var: {:?}", std::env::var("DISPLAY"));
-        eprintln!("  Display handle obtained: {:?}", display_handle);
-        eprintln!("  Window handle obtained: {:?}", window_handle);
-        eprintln!("  Inner size: {}x{}", inner_size.width, inner_size.height);
+        info!("headed_window: Creating WindowRenderingContext...");
+        info!("  DISPLAY env var: {:?}", std::env::var("DISPLAY"));
+        info!("  Display handle obtained: {:?}", display_handle);
+        info!("  Window handle obtained: {:?}", window_handle);
+        info!("  Inner size: {}x{}", inner_size.width, inner_size.height);
 
         let window_rendering_context = match WindowRenderingContext::new(display_handle, window_handle, inner_size) {
             Ok(context) => {
-                eprintln!("  WindowRenderingContext created successfully!");
+                info!("  WindowRenderingContext created successfully!");
                 Rc::new(context)
             },
             Err(e) => {
-                eprintln!("  Failed to create WindowRenderingContext!");
-                eprintln!("  Error: {:?}", e);
+                info!("  Failed to create WindowRenderingContext!");
+                info!("  Error: {:?}", e);
                 panic!("Could not create RenderingContext for Window: {:?}", e);
             }
         };
@@ -178,6 +178,7 @@ impl Window {
             let details = window_rendering_context.surfman_details();
             setup_gl_accelerated_media(details.0, details.1);
         }
+        info!("Setting up WindowRenderingContext");
 
         // Make sure the gl context is made current.
         window_rendering_context
@@ -186,7 +187,7 @@ impl Window {
 
         let rendering_context = Rc::new(window_rendering_context.offscreen_context(inner_size));
 
-        debug!("Created window {:?}", winit_window.id());
+        info!("Created window {:?}", winit_window.id());
         Window {
             winit_window,
             webview_relative_mouse_point: Cell::new(Point2D::zero()),

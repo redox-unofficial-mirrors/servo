@@ -13,6 +13,8 @@ pub fn main() {
     crate::crash_handler::install();
     crate::init_crypto();
     crate::resources::init();
+    let env = env_logger::Env::default().default_filter_or("info");
+    env_logger::init_from_env(env);
 
     // TODO: once log-panics is released, can this be replaced by
     // log_panics::init()?
