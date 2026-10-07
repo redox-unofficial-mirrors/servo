@@ -17,6 +17,7 @@ use fonts::SystemFontService;
     feature = "multiprocess",
     not(target_os = "windows"),
     not(target_os = "ios"),
+    not(target_os = "redox"),
     not(target_os = "android"),
     not(target_arch = "arm"),
     not(target_arch = "aarch64"),
@@ -70,6 +71,7 @@ use servo_constellation::UnprivilegedContent;
     feature = "multiprocess",
     not(target_os = "windows"),
     not(target_os = "ios"),
+    not(target_os = "redox"),
     not(target_os = "android"),
     not(target_arch = "arm"),
     not(target_arch = "aarch64"),
@@ -1408,6 +1410,7 @@ pub fn run_content_process(token: String) {
     not(target_os = "windows"),
     not(target_os = "ios"),
     not(target_os = "android"),
+    not(target_os = "redox"),
     not(target_arch = "arm"),
     not(target_arch = "aarch64"),
     not(target_arch = "riscv32"),
@@ -1424,6 +1427,7 @@ fn create_sandbox() {
     target_os = "windows",
     target_os = "ios",
     target_os = "android",
+    target_os = "redox",
     target_arch = "arm",
     target_arch = "aarch64",
     target_arch = "riscv32",
@@ -1431,7 +1435,7 @@ fn create_sandbox() {
     target_env = "ohos",
 ))]
 fn create_sandbox() {
-    panic!("Sandboxing is not supported on Windows, iOS, ARM, RISC-V targets and android.");
+    panic!("Sandboxing is not supported on Windows, Redox, iOS, ARM, RISC-V targets and android.");
 }
 
 struct DefaultEventLoopWaker;

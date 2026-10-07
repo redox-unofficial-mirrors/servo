@@ -7,6 +7,7 @@ use std::collections::HashMap;
     target_os = "windows",
     target_os = "linux",
     target_os = "freebsd",
+    target_os = "redox",
     target_os = "macos"
 ))]
 use std::fs;
@@ -14,6 +15,7 @@ use std::fs;
     target_os = "windows",
     target_os = "linux",
     target_os = "freebsd",
+    target_os = "redox",
     target_os = "macos"
 ))]
 use std::path::Path;
@@ -32,6 +34,7 @@ use egui::{
     target_os = "windows",
     target_os = "linux",
     target_os = "freebsd",
+    target_os = "redox",
     target_os = "macos"
 ))]
 use egui::{FontData, FontFamily};
@@ -42,7 +45,8 @@ use euclid::{Length, Point2D, Rect, Scale, Size2D};
     target_os = "windows",
     target_os = "linux",
     target_os = "freebsd",
-    target_os = "macos"
+    target_os = "redox",
+    target_os = "macos",
 ))]
 use log::info;
 use log::warn;
@@ -107,6 +111,7 @@ fn truncate_with_ellipsis(input: &str, max_length: usize) -> String {
     target_os = "windows",
     target_os = "linux",
     target_os = "freebsd",
+    target_os = "redox",
     target_os = "macos"
 ))]
 fn load_cjk_fonts(font_candidates: &[(&str, &str)]) -> FontDefinitions {
@@ -151,9 +156,13 @@ fn configure_fonts() -> FontDefinitions {
     ])
 }
 
-#[cfg(any(target_os = "linux", target_os = "freebsd"))]
+#[cfg(any(target_os = "linux", target_os = "freebsd", target_os = "redox"))]
 fn configure_fonts() -> FontDefinitions {
     load_cjk_fonts(&[
+        (
+            "/usr/share/fonts/Sans/DejaVu/DejaVuSans.ttf",
+            "Deja Vu Sans",
+        ), // Redox
         (
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
             "Noto Sans CJK",

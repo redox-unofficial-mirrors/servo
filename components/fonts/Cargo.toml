@@ -20,7 +20,7 @@ doctest = false
 # via pkg-config. If this feature is disabled, and pkg-config fails to find a
 # suitable freetype version, the build will fail!
 # Only affects targets where freetype-sys is a dependency (Linux/Android/OHOS)
-bundled_freetype = ["freetype-sys/bundled"]
+bundled_freetype = [] # redox: "freetype-sys/bundled" removed
 tracing = ["dep:tracing"]
 
 [dependencies]
@@ -76,12 +76,12 @@ objc2-core-foundation = { workspace = true }
 objc2-core-graphics = { workspace = true }
 objc2-core-text = { workspace = true }
 
-[target.'cfg(any(target_os = "linux", target_os = "android", target_os = "freebsd"))'.dependencies]
+[target.'cfg(any(target_os = "linux", target_os = "android", target_os = "freebsd", target_os = "redox"))'.dependencies]
 freetype-sys = { workspace = true }
 harfbuzz-sys = { workspace = true, features = ["freetype"] }
 servo-allocator = { workspace = true }
 
-[target.'cfg(all(any(target_os = "linux", target_os = "freebsd"), not(target_env = "ohos")))'.dependencies]
+[target.'cfg(all(any(target_os = "linux", target_os = "freebsd", target_os = "redox"), not(target_env = "ohos")))'.dependencies]
 fontconfig_sys = { workspace = true }
 
 [target.'cfg(target_os = "android")'.dependencies]

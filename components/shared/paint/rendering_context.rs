@@ -776,16 +776,17 @@ impl OffscreenRenderingContext {
     ) {
         use glow::HasContext as _;
         unsafe {
-            gl.clear_color(0.0, 0.0, 0.0, 0.0);
-            gl.scissor(
-                target_rect.origin.x,
-                target_rect.origin.y,
-                target_rect.width(),
-                target_rect.height(),
-            );
-            gl.enable(gl::SCISSOR_TEST);
-            gl.clear(gl::COLOR_BUFFER_BIT);
-            gl.disable(gl::SCISSOR_TEST);
+            // redox: this is slow
+            // gl.clear_color(0.0, 0.0, 0.0, 0.0);
+            // gl.scissor(
+            //     target_rect.origin.x,
+            //     target_rect.origin.y,
+            //     target_rect.width(),
+            //     target_rect.height(),
+            // );
+            // gl.enable(gl::SCISSOR_TEST);
+            // gl.clear(gl::COLOR_BUFFER_BIT);
+            // gl.disable(gl::SCISSOR_TEST);
 
             gl.bind_framebuffer(gl::READ_FRAMEBUFFER, Some(source_framebuffer_id));
             gl.bind_framebuffer(gl::DRAW_FRAMEBUFFER, target_framebuffer_id);

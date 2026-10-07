@@ -233,11 +233,8 @@ impl Painter {
             webrender_gl.clone(),
             Box::new(RenderNotifier::new(painter_id, paint.paint_proxy.clone())),
             webrender::WebRenderOptions {
-                // We force the use of optimized shaders here because rendering is broken
-                // on Android emulators with unoptimized shaders. This is due to a known
-                // issue in the emulator's OpenGL emulation layer.
-                // See: https://github.com/servo/servo/issues/31726
-                use_optimized_shaders: true,
+                // Redox: GLSL optimizer is commented out
+                use_optimized_shaders: false,
                 resource_override_path: opts::get().shaders_path.clone(),
                 debug_flags: webrender::DebugFlags::empty(),
                 precache_flags: if pref!(gfx_precache_shaders) {

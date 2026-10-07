@@ -7,7 +7,8 @@ mod freetype_face;
 
 #[cfg(any(
     all(target_os = "linux", not(target_env = "ohos"), not(ohos_mock)),
-    target_os = "freebsd"
+    target_os = "freebsd",
+    target_os = "redox",
 ))]
 pub mod font_list;
 

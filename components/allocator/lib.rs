@@ -173,7 +173,7 @@ mod platform {
 
         #[cfg(not(target_vendor = "apple"))]
         unsafe {
-            let size = libc::malloc_usable_size(ptr as *mut _);
+            let size = 0;// redox: no libc::malloc_usable_size(ptr as *mut _);
             #[cfg(feature = "allocation-tracking")]
             crate::ALLOC.note_allocation(ptr, size);
             size
