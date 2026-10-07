@@ -137,10 +137,10 @@ image = { version = "0.25", default-features = false, features = ["bmp", "gif", 
 imsz = "0.4"
 indexmap = { version = "2.14.0", features = ["std"] }
 inventory = "0.3.24"
-ipc-channel = "0.23"
+ipc-channel = { version = "0.23", features = ["force-inprocess"] }
 itertools = "0.15"
 jni = "0.22"
-js = { package = "mozjs", version = "=0.26.4", default-features = false, features = ["intl", "libz-sys"] }
+js = { package = "mozjs", git = "https://github.com/willnode/mozjs", branch = "redox-0.26.4", default-features = false, features = ["intl", "libz-sys"] }
 k12 = "0.5"
 keccak = "0.2"
 keyboard-types = { version = "0.8.3", features = ["serde", "webdriver"] }
@@ -244,7 +244,7 @@ stylo_dom = { git = "https://github.com/servo/stylo", rev = "9e2238d5cef5863c285
 stylo_malloc_size_of = { git = "https://github.com/servo/stylo", rev = "9e2238d5cef5863c2857e9c95887fcdad010092d" }
 stylo_static_prefs = { git = "https://github.com/servo/stylo", rev = "9e2238d5cef5863c2857e9c95887fcdad010092d" }
 stylo_traits = { git = "https://github.com/servo/stylo", rev = "9e2238d5cef5863c2857e9c95887fcdad010092d" }
-surfman = "0.14.0"
+surfman = { git = "https://github.com/willnode/surfman", branch = "redox-0.14" }
 swapper = "0.1"
 syn = { version = "2", default-features = false, features = ["clone-impls", "derive", "parsing"] }
 synstructure = "0.13"
@@ -252,8 +252,8 @@ sys-locale = "0.3"
 taffy = { version = "0.14.0", default-features = false, features = ["calc", "detailed_layout_info", "grid", "std"] }
 tempfile = "3"
 tendril = { version = "0.5", features = ["encoding_rs"] }
-tikv-jemalloc-sys = "0.6.1"
-tikv-jemallocator = "0.6.1"
+tikv-jemalloc-sys = { git = "https://github.com/willnode/jemallocator.git", branch = "redox" }
+tikv-jemallocator = { git = "https://github.com/willnode/jemallocator.git", branch = "redox" }
 time = { package = "time", version = "0.3", features = ["large-dates", "local-offset", "serde"] }
 tokio = "1"
 tokio-rustls = { version = "0.26", default-features = false, features = ["logging"] }
@@ -279,13 +279,13 @@ warp = "0.4.2"
 web_atoms = "0.3.0"
 webdriver = "0.54.0"
 webpki-roots = "1.0"
-webrender = { version = "0.70", features = ["serde"] }
-webrender_api = "0.70"
+webrender = { git = "https://github.com/willnode/webrender.git", branch = "0.70-redox", features = ["serde"] }
+webrender_api = { git = "https://github.com/willnode/webrender.git", branch = "0.70-redox" }
 wgpu-core = "30"
 wgpu-types = "30"
 winapi = "0.3"
 windows-sys = "0.61"
-winit = "0.30.13"
+winit = "0.30.12"
 winresource = "0.1"
 wio = "0.2"
 wr_malloc_size_of = "0.2.2"
@@ -444,6 +444,16 @@ lto = "thin"
 codegen-units = 1
 
 [patch.crates-io]
+# requires socketpair SOCK_SEQPACKET to support multiprocess (try remove force-inprocess feature)
+ipc-channel = { git = "https://github.com/willnode/ipc-channel.git", branch="redox-0.23" }
+wr_malloc_size_of = { git = "https://github.com/willnode/webrender.git", branch = "0.70-redox" }
+inventory = { git = "https://github.com/willnode/inventory.git", branch = "redox"}
+mozangle = { git = "https://github.com/willnode/mozangle.git", branch = "redox-0.7"}
+winit = { git = "https://github.com/willnode/winit.git", branch = "redox-0.30-event"}
+dpi = { git = "https://github.com/willnode/winit.git", branch = "redox-0.30-event"}
+egui = { git = "https://github.com/willnode/egui.git", branch = "redox-0.34"}
+egui_glow = { git = "https://github.com/willnode/egui.git", branch = "redox-0.34"}
+egui-winit = { git = "https://github.com/willnode/egui.git", branch = "redox-0.34"}
 # If you need to temporarily test Servo with a local fork of some upstream
 # crate, add that here. Use the form:
 #

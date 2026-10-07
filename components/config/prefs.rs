@@ -515,7 +515,7 @@ impl Preferences {
             fonts_serif: String::new(),
             gfx_precache_shaders: false,
             gfx_text_antialiasing_enabled: true,
-            gfx_subpixel_text_antialiasing_enabled: true,
+            gfx_subpixel_text_antialiasing_enabled: false, // redox override
             gfx_texture_swizzling_enabled: true,
             image_key_batch_size: 10,
             inspector_show_servo_internal_shadow_roots: false,
@@ -561,9 +561,9 @@ impl Preferences {
             layout_grid_enabled: true,
             layout_style_sharing_cache_enabled: true,
             // TODO(mrobinson): This should likely be based on the number of processors.
-            layout_threads: 3,
-            layout_parallelism_job_count_minimum: 4,
-            layout_parallelism_job_size_minimum: 16,
+            layout_threads: 2, // redox override
+            layout_parallelism_job_count_minimum: 2, // redox override
+            layout_parallelism_job_size_minimum: 8, // redox override
             layout_unimplemented: false,
             layout_variable_fonts_enabled: false,
             layout_writing_mode_enabled: false,
